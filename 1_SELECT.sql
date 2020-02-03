@@ -1,4 +1,3 @@
-```sql
 --SELECT EMP_ID, EMP_NAME
 --FROM EMPLOYEE;
 --
@@ -81,4 +80,3 @@ FROM EMPLOYEE;
 -- EMPLOYEE 테이블에서 이름, 고용일, 근무일수(오늘날짜 - 고용일) 조회
 SELECT EMP_NAME AS 이름, HIRE_DATE AS 고용일, SYSDATE-HIRE_DATE 근무일수
 FROM EMPLOYEE;
-```
