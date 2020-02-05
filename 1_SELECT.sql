@@ -5,78 +5,320 @@
 --FROM EMPLOYEE;
 
 -- SELECT
--- Result Set : SELECTêµ¬ë¬¸ìœ¼ë¡œ ë°ì´í„°ë¥¼ ì¡°íšŒí•œ ê²°ê³¼ë¬¼, ë°˜í™˜ëœ í–‰ë“¤ì˜ ì§‘í•©(0í–‰ ì´ìƒ)
+-- Result Set : SELECT±¸¹®À¸·Î µ¥ÀÌÅÍ¸¦ Á¶È¸ÇÑ °á°ú¹°, ¹ÝÈ¯µÈ ÇàµéÀÇ ÁýÇÕ(0Çà ÀÌ»ó)
 
--- EMPLOYEE í…Œì´ë¸”ì˜ ì‚¬ë²ˆê³¼ ì´ë¦„, ê¸‰ì—¬ ì¡°íšŒ
+-- EMPLOYEE Å×ÀÌºíÀÇ »ç¹ø°ú ÀÌ¸§, ±Þ¿© Á¶È¸
 SELECT EMP_ID, EMP_NAME, SALARY
 FROM EMPLOYEE;
 
--- EMPLOYEE í…Œì´ë¸”ì—ì„œ ëª¨ë“  ì‚¬ì›ì˜ ëª¨ë“  ì •ë³´ ì¡°íšŒ
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ¸ðµç »ç¿øÀÇ ¸ðµç Á¤º¸ Á¶È¸
 -- SELECT EMP_ID, EMP_NAME, EMP_NO, EMAIL, PHONE, DEPT_CODE, JOB_CODE, SAL_LEVEL, SALARY, BONUS, MANAGER_ID, HIRE_DATE,
 -- ENT_DATE, ENT_YN
 SELECT * FROM EMPLOYEE;
 
--- ë¯¸ë‹ˆ ì‹¤ìŠµ ë¬¸ì œ
--- 1. JOBí…Œì´ë¸”ì˜ ëª¨ë“  ì •ë³´ ì¡°íšŒ
+-- ¹Ì´Ï ½Ç½À ¹®Á¦
+-- 1. JOBÅ×ÀÌºíÀÇ ¸ðµç Á¤º¸ Á¶È¸
 SELECT *
 FROM JOB;
--- 2. JOBí…Œì´ë¸”ì˜ ì§ê¸‰ ì´ë¦„ ì¡°íšŒ
+-- 2. JOBÅ×ÀÌºíÀÇ Á÷±Þ ÀÌ¸§ Á¶È¸
 SELECT JOB_NAME
 FROM JOB;
--- 3. DEPARTMENT í…Œì´ë¸”ì˜ ëª¨ë“  ì •ë³´ ì¡°íšŒ
+-- 3. DEPARTMENT Å×ÀÌºíÀÇ ¸ðµç Á¤º¸ Á¶È¸
 SELECT *
 FROM DEPARTMENT;
--- 4. EMPLOYEE í…Œì´ë¸”ì˜ ì§ì›ëª…, ì´ë©”ì¼, ì „í™”ë²ˆí˜¸, ê³ ìš©ì¼ ì¡°íšŒ
+-- 4. EMPLOYEE Å×ÀÌºíÀÇ Á÷¿ø¸í, ÀÌ¸ÞÀÏ, ÀüÈ­¹øÈ£, °í¿ëÀÏ Á¶È¸
 SELECT EMP_NAME, EMAIL, PHONE, HIRE_DATE
 FROM EMPLOYEE;
--- 5. EMPLOYEE í…Œì´ë¸”ì˜ ê³ ìš©ì´ë¥´ ì‚¬ì› ì´ë¦„, ì›”ê¸‰ ì¡°íšŒ
+-- 5. EMPLOYEE Å×ÀÌºíÀÇ °í¿ëÀÌ¸£ »ç¿ø ÀÌ¸§, ¿ù±Þ Á¶È¸
 SELECT HIRE_DATE, EMP_NAME, SALARY
 FROM EMPLOYEE;
 
--- ì»¬ëŸ¼ ê°’, ì‚°ìˆ  ì—°ì‚°
--- SELECT ì‹œ ì»¬ëŸ¼ëª… ìž…ë ¥ ë¶€ë¶„ì— ê³„ì‚°ì— í•„ìš”í•œ ì»¬ëŸ¼ëª…, ìˆ«ìž, ì—°ì‚°ìžë¥¼ ì´ìš©í•´ì„œ ê²°ê³¼ ì¡°íšŒ ê°€ëŠ¥
+-- ÄÃ·³ °ª, »ê¼ú ¿¬»ê
+-- SELECT ½Ã ÄÃ·³¸í ÀÔ·Â ºÎºÐ¿¡ °è»ê¿¡ ÇÊ¿äÇÑ ÄÃ·³¸í, ¼ýÀÚ, ¿¬»êÀÚ¸¦ ÀÌ¿ëÇØ¼­ °á°ú Á¶È¸ °¡´É
 
--- EMPLOYEE í…Œì´ë¸”ì— ì§ì› ëª…, ì—°ë´‰ ì¡°íšŒ (ì—°ë´‰ = ê¸‰ì—¬ * 12)
+-- EMPLOYEE Å×ÀÌºí¿¡ Á÷¿ø ¸í, ¿¬ºÀ Á¶È¸ (¿¬ºÀ = ±Þ¿© * 12)
 SELECT EMP_NAME, SALARY*12
 FROM EMPLOYEE;
 
--- EMPLOYEE í…Œì´ë¸”ì—ì„œ ì§ì›ì˜ ì§ì›ëª…, ì—°ë´‰, ë³´ë„ˆìŠ¤ë¥¼ ì¶”ê°€í•œ ì—°ë´‰ ì¡°íšŒ
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ Á÷¿øÀÇ Á÷¿ø¸í, ¿¬ºÀ, º¸³Ê½º¸¦ Ãß°¡ÇÑ ¿¬ºÀ Á¶È¸
 --SELECT EMP_NAME,SALARY*12, (SALARY + (SALARY*BONUS))*12
 SELECT EMP_NAME,SALARY*12, (SALARY*(1+BONUS))*12
 FROM EMPLOYEE;
 
---SELECT *, SALARY*12   // *ì€ í˜¼ìž ì¨ì•¼í•¨
+--SELECT *, SALARY*12   // *Àº È¥ÀÚ ½á¾ßÇÔ
 --FROM EMPLOYEE;
 
 
--- ë¯¸ë‹ˆ ì‹¤ìŠµ ë¬¸ì œ
--- 1. EMPLOYEE í…Œì´ë¸”ì—ì„œ ì´ë¦„, ì—°ë´‰, ì´ìˆ˜ë ¹ì•¡(ë³´ë„ˆìŠ¤ í¬í•¨), ì‹¤ìˆ˜ë ¹ì•¡(ì´ìˆ˜ë ¹ì•¡ - (ì—°ë´‰*ì„¸ê¸ˆ 3%)) ì¡°íšŒ
+-- ¹Ì´Ï ½Ç½À ¹®Á¦
+-- 1. EMPLOYEE Å×ÀÌºí¿¡¼­ ÀÌ¸§, ¿¬ºÀ, ÃÑ¼ö·É¾×(º¸³Ê½º Æ÷ÇÔ), ½Ç¼ö·É¾×(ÃÑ¼ö·É¾× - (¿¬ºÀ*¼¼±Ý 3%)) Á¶È¸
 SELECT EMP_NAME,SALARY*12, (SALARY + (SALARY*BONUS))*12, (SALARY*(1+BONUS))*12 - (SALARY*12*0.03)
 FROM EMPLOYEE;
--- 2. EMPLOYEE í…Œì´ë¸”ì—ì„œ ì´ë¦„, ê³ ìš©ì¼, ê·¼ë¬´ì¼ìˆ˜(ì˜¤ëŠ˜ ë‚ ì§œ - ê³ ìš©ì¼) ì¡°íšŒ
--- SYSDATE : ì˜¤ëŠ˜ ë‚ ì§œ
-SELECT SYSDATE  -- ì˜¤ëŠ˜ ë‚ ì§œ ì¶œë ¥
-FROM DUAL;  -- ê°€ìƒ í…Œì´ë¸”
+-- 2. EMPLOYEE Å×ÀÌºí¿¡¼­ ÀÌ¸§, °í¿ëÀÏ, ±Ù¹«ÀÏ¼ö(¿À´Ã ³¯Â¥ - °í¿ëÀÏ) Á¶È¸
+-- SYSDATE : ¿À´Ã ³¯Â¥
+SELECT SYSDATE  -- ¿À´Ã ³¯Â¥ Ãâ·Â
+FROM DUAL;  -- °¡»ó Å×ÀÌºí
 
-SELECT EMP_NAME,HIRE_DATE, ROUND(SYSDATE - HIRE_DATE)   -- FLOOR ë‚´ë¦¼ì„ ë§Žì´ ì‚¬ìš©í•¨ / ROUND ë°˜ì˜¬ë¦¼ / TRUNC ì˜¬ë¦¼ 
+SELECT EMP_NAME,HIRE_DATE, ROUND(SYSDATE - HIRE_DATE)   -- FLOOR ³»¸²À» ¸¹ÀÌ »ç¿ëÇÔ / ROUND ¹Ý¿Ã¸² / TRUNC ¿Ã¸² 
 FROM EMPLOYEE;
 
-SELECT SYSDATE - HIRE_DATE ê·¼ë¬´ì¼ìˆ˜, ROUND(SYSDATE-HIRE_DATE) ë°˜ì˜¬ë¦¼, CEIL(SYSDATE-HIRE_DATE) ì˜¬ë¦¼,
-        FLOOR(SYSDATE-HIRE_DATE) ë‚´ë¦¼, TRUNC(SYSDATE-HIRE_DATE) ë²„ë¦¼
+SELECT SYSDATE - HIRE_DATE ±Ù¹«ÀÏ¼ö, ROUND(SYSDATE-HIRE_DATE) ¹Ý¿Ã¸², CEIL(SYSDATE-HIRE_DATE) ¿Ã¸²,
+        FLOOR(SYSDATE-HIRE_DATE) ³»¸², TRUNC(SYSDATE-HIRE_DATE) ¹ö¸²
 FROM EMPLOYEE;
 
 
--- ì»¬ëŸ¼ ë³„ì¹­ :
--- ì»¬ëŸ¼ëª… AS ë³„ì¹­
--- ì»¬ëŸ¼ëª… "ë³„ì¹­"
--- ì»¬ëŸ¼ëª… AS "ë³„ì¹­"
--- ì»¬ëŸ¼ëª… ë³„ì¹­
--- ë³„ì¹­ì— ë„ì–´ì“°ê¸°, íŠ¹ìˆ˜ë¬¸ìž, ìˆ«ìžê°€ í¬í•¨ë  ê²½ìš° ë¬´ì¡°ê±´""ìœ¼ë¡œ ë¬¶ì–´ì•¼ í•¨
+-- ÄÃ·³ º°Äª :
+-- ÄÃ·³¸í AS º°Äª
+-- ÄÃ·³¸í "º°Äª"
+-- ÄÃ·³¸í AS "º°Äª"
+-- ÄÃ·³¸í º°Äª
+-- º°Äª¿¡ ¶ç¾î¾²±â, Æ¯¼ö¹®ÀÚ, ¼ýÀÚ°¡ Æ÷ÇÔµÉ °æ¿ì ¹«Á¶°Ç""À¸·Î ¹­¾î¾ß ÇÔ
 
--- EMPLOYEE í…Œì´ë¸”ì—ì„œ ì§ì›ì˜ ì§ì›ëª…(ë³„ì¹­ : ì´ë¦„), ì—°ë´‰(ë³„ì¹­ : ì—°ë´‰(ì›)), ë³´ë„ˆìŠ¤ë¥¼ ì¶”ê°€í•œ ì—°ë´‰(ë³„ì¹­ : ì´ì†Œë“(ì›)) ì¡°íšŒ
-SELECT EMP_NAME ì´ë¦„, SALARY*12 "ì—°ë´‰(ì›)", (SALARY*(1+BONUS))*12 AS "ì´ì†Œë“(ì›)"
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ Á÷¿øÀÇ Á÷¿ø¸í(º°Äª : ÀÌ¸§), ¿¬ºÀ(º°Äª : ¿¬ºÀ(¿ø)), º¸³Ê½º¸¦ Ãß°¡ÇÑ ¿¬ºÀ(º°Äª : ÃÑ¼Òµæ(¿ø)) Á¶È¸
+SELECT EMP_NAME ÀÌ¸§, SALARY*12 "¿¬ºÀ(¿ø)", (SALARY*(1+BONUS))*12 AS "ÃÑ¼Òµæ(¿ø)"
 FROM EMPLOYEE;
 
--- EMPLOYEE í…Œì´ë¸”ì—ì„œ ì´ë¦„, ê³ ìš©ì¼, ê·¼ë¬´ì¼ìˆ˜(ì˜¤ëŠ˜ë‚ ì§œ - ê³ ìš©ì¼) ì¡°íšŒ
-SELECT EMP_NAME AS ì´ë¦„, HIRE_DATE AS ê³ ìš©ì¼, SYSDATE-HIRE_DATE ê·¼ë¬´ì¼ìˆ˜
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ÀÌ¸§, °í¿ëÀÏ, ±Ù¹«ÀÏ¼ö(¿À´Ã³¯Â¥ - °í¿ëÀÏ) Á¶È¸
+SELECT EMP_NAME AS ÀÌ¸§, HIRE_DATE AS °í¿ëÀÏ, SYSDATE-HIRE_DATE ±Ù¹«ÀÏ¼ö
 FROM EMPLOYEE;
+
+
+-- ¸®ÅÍ·²
+-- ÀÓÀ¸·Î Á¤ÇÑ ¹®ÀÚ¿­À» SELECTÀý¿¡ »ç¿ëÇÏ¸é Å×ÀÌºí¿¡ Á¸ÀçÇÏ´Â µ¥ÀÌÅÍÃ³·³ »ç¿ë °¡´É
+-- ¹®ÀÚ³ª ³¯Â¥ ¸®ÅÍ·²Àº ' ' ±âÈ£·Î »ç¿ëµÇ¸ç ¸ðµç Çà¿¡ ¹Ýº¹ Ç¥½Ã µÊ
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ Á÷¿øÀÇ Á÷¿ø ¹øÈ£, »ç¿ø¸í, ±Þ¿©, ´ÜÀ§(µ¥ÀÌÅÍ °ª : ¿ø) Á¶È¸
+SELECT EMP_ID Á÷¿ø¹øÈ£, EMP_NAME »ç¿ø¸í,SALARY ±Þ¿©, '¿ø' ´ÜÀ§
+FROM EMPLOYEE;
+
+
+-- DISTINCT : ÄÃ·³¿¡ Æ÷ÇÔµÈ Áßº¹ °ªÀ» ÇÑ ¹ø¾¿¸¸ Ç¥±âÇÏ°íÀÚ ÇÒ ¶§ »ç¿ë, SELECTÀý¿¡ µü ÇÑ ¹ø¸¸ ¾µ ¼ö ÀÖÀ½
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ Á÷¿øÀÇ Á÷±Þ ÄÚµå Á¶È¸
+SELECT JOB_CODE
+FROM EMPLOYEE;
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ Á÷¿øÀÇ Á÷±ÞÄÚµå¸¦ Áßº¹Á¦°ÅÇÏ¿© Á¶È¸
+SELECT DISTINCT JOB_CODE
+FROM EMPLOYEE;
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ºÎ¼­ÄÚµå¿Í Á÷±ÞÄÚµå¸¦ Áßº¹Á¦°Å ÇÏ¿© Á¶È¸
+SELECT DISTINCT DEPT_CODE, JOB_CODE   -- µÎ °³°¡ ÇÏ³ª·Î ¹­¿©¼­ Áßº¹Á¦°Å µÊ
+FROM EMPLOYEE;
+
+
+-- WHEREÀý : SELECT¿¡ °É¸®´Â Á¶°Ç¹®ÀÌ µé¾î°¡´Â Àý
+-- Á¶È¸ÇÒ Å×ÀÌºí¿¡¼­ Á¶°ÇÀÌ ¸Â´Â °ªÀ» °¡Áø ÇàÀ» °ñ¶ó³¿
+-- ºñ±³ ¿¬»êÀÚ
+-- = °°³Ä, > Å©³Ä, < ÀÛ³Ä, >= Å©°Å³ª °°³Ä, <= ÀÛ°Å³ª °°³Ä
+-- != , *= , <> ¾È °°³Ä(3°¡Áö ¹æ¹ý)
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ºÎ¼­ÄÚµå°¡ 'D9'ÀÎ Á÷¿øÀÇ ÀÌ¸§, ºÎ¼­ÄÚµå Á¶È¸
+SELECT EMP_NAME,DEPT_CODE
+FROM EMPLOYEE
+WHERE DEPT_CODE = 'D9';
+
+--EMPLOYEE Å×ÀÌºí¿¡¼­ ±Þ¿©°¡ 4000000 ÀÌ»óÀÎ Á÷¿øÀÇ ÀÌ¸§, ±Þ¿© Á¶È¸
+SELECT EMP_NAME, SALARY
+FROM EMPLOYEE
+WHERE SALARY >= 4000000;
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ºÎ¼­ÄÚµå°¡ D9°¡ ¾Æ´Ñ »ç¿øÀÇ »ç¹ø, ÀÌ¸§, ºÎ¼­ÄÚµå Á¶È¸
+SELECT EMP_ID,EMP_NAME,DEPT_CODE
+FROM EMPLOYEE
+--WHERE DEPT_CODE != 'D9';
+--WHERE DEPT_CODE *= 'D9';
+WHERE DEPT_CODE <> 'D9';
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ Åð»ç ¿©ºÎ°¡ NÀÎ Á÷¿øÀ» Á¶È¸ÇÏ°í
+-- ±Ù¹« ¿©ºÎ¸¦ ÀçÁ÷ÁßÀ¸·Î Ç¥½ÃÇÏ¿© »ç¹ø, ÀÌ¸§, °í¿ëÀÏ, ±Ù¹« ¿©ºÎ Á¶È¸
+SELECT EMP_ID,EMP_NAME,HIRE_DATE,'ÀçÁ÷Áß' ±Ù¹«¿©ºÎ
+FROM EMPLOYEE
+WHERE ENT_YN = 'N';
+
+-- ¹Ì´Ï ½Ç½À ¹®Á¦
+-- 1. EMPLOYEE Å×ÀÌºí¿¡¼­ ¿ù±ÞÀÌ 3000000 ÀÌ»óÀÎ »ç¿øÀÇ ÀÌ¸§, ¿ù±Þ, °í¿ëÀÏ Á¶È¸
+SELECT EMP_NAME, SALARY,HIRE_DATE
+FROM EMPLOYEE
+WHERE SALARY >= 3000000;
+-- 2. EMPLOYEE Å×ÀÌºí¿¡¼­ SAL_LEVELÀÌ S1ÀÎ »ç¿øÀÇ ÀÌ¸§, ¿ù±Þ, °í¿ëÀÏ, ¿¬¶ôÃ³ Á¶È¸
+SELECT EMP_NAME,SALARY,HIRE_DATE,PHONE
+FROM EMPLOYEE
+WHERE SAL_LEVEL = 'S1';
+-- 3. EMPLOYEE Å×ÀÌºí¿¡¼­ ½Ç¼ö·É¾×(ÃÑ¼ö·É¾× -(¿¬ºÀ*¼¼±Ý 3%))ÀÌ 5Ãµ¸¸¿ø ÀÌ»óÀÎ »ç¿øÀÇ ÀÌ¸§, ¿ù±Þ, ½Ç¼ö·É¾×, °í¿ëÀÏ Á¶È¸
+SELECT EMP_NAME,SALARY,(SALARY*(1+BONUS))*12 - (SALARY*12*0.03)½Ç¼ö·É¾×,HIRE_DATE
+FROM EMPLOYEE
+WHERE (((SALARY*(1+BONUS))*12) - (SALARY*12*0.03)) >= 50000000;
+
+
+-- ³í¸® ¿¬»êÀÚ : AND / OR
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ºÎ¼­ÄÚµå°¡ 'D6'ÀÌ°í ±Þ¿©¸¦ 2¹é¸¸º¸´Ù ¸¹ÀÌ ¹Þ´Â Á÷¿øÀÇ ÀÌ¸§, ºÎ¼­ÄÚµå, ±Þ¿© Á¶È¸
+SELECT EMP_NAME, DEPT_CODE, SALARY
+FROM EMPLOYEE
+WHERE DEPT_CODE = 'D6' AND SALARY >= 2000000;
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ºÎ¼­ÄÚµå°¡ 'D6'ÀÌ°Å³ª ±Þ¿©¸¦ 2¹é¸¸º¸´Ù ¸¹ÀÌ ¹Þ´Â Á÷¿øÀÇ ÀÌ¸§, ºÎ¼­ÄÚµå, ±Þ¿© Á¶È¸
+SELECT EMP_NAME, DEPT_CODE, SALARY
+FROM EMPLOYEE
+WHERE DEPT_CODE = 'D6' OR SALARY >= 2000000;
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ±Þ¿©¸¦ 350¸¸¿ø ÀÌ»ó 600¸¸¿ø ÀÌÇÏ¸¦ ¹Þ´Â Á÷¿øÀÇ »ç¹ø, ÀÌ¸§, ±Þ¿©, ºÎ¼­ÄÚµå, Á÷±Þ ÄÚµå Á¶È¸
+SELECT EMP_ID,EMP_NAME,SALARY,DEPT_CODE,JOB_CODE
+FROM EMPLOYEE
+WHERE SALARY >= 3500000 AND SALARY <= 6000000;
+
+-- ¹Ì´Ï ½Ç½À ¹®Á¦
+-- EMPLOYEE Å×ÀÌºí¿¡ ¿ù±ÞÀÌ 4000000 ÀÌ»óÀÌ°í JOB_CODE°¡ J2ÀÎ »ç¿øÀÇ ÀüÃ¼ ³»¿ë Á¶È¸
+SELECT *
+FROM EMPLOYEE
+WHERE SALARY >= 4000000 AND JOB_CODE = 'J2';
+-- EMPLOYEE Å×ÀÌºí¿¡ DEPT_CODE°¡ D9ÀÌ°Å³ª D5ÀÎ »ç¿ø Áß °í¿ëÀÏÀÌ 02³â 1¿ù 1ÀÏ º¸´Ù ºü¸¥ »ç¿øÀÇ ÀÌ¸§, ºÎ¼­ÄÚµå, °í¿ëÀÏ Á¶È¸
+SELECT EMP_NAME,DEPT_CODE,HIRE_DATE
+FROM EMPLOYEE
+WHERE (DEPT_CODE = 'D9' OR DEPT_CODE ='D5') AND HIRE_DATE < '02/01/01';     -- AND°¡ ORº¸´Ù ¿ì¼± ¼øÀ§°¡ ³ôÀ½
+
+
+-- BETWEEN AND : ÇÏÇÑ °ª ÀÌ»ó »óÇÑ °ª ÀÌÇÏ
+-- ÄÃ·³¸í BETWEEN ÇÏÇÑ °ª AND »óÇÑ °ª
+-- ÇÏÇÑ °ª <= ÄÃ·³ ¸í <= »óÇÑ °ª
+
+-- ±Þ¿©¸¦ 3500000¿ø º¸´Ù ¸¹ÀÌ ¹Þ°í 6000000º¸´Ù Àû°Ô ¹Þ´Â »ç¿øÀÇ ÀÌ¸§, ±Þ¿© Á¶È¸
+-- 1) BETWEEN AND ¹Ì Àû¿ë
+SELECT EMP_NAME,SALARY
+FROM EMPLOYEE
+WHERE SALARY >= 3500000 AND SALARY <= 6000000;
+-- 2) BETWEEN AND Àû¿ë
+SELECT EMP_NAME,SALARY
+FROM EMPLOYEE
+WHERE SALARY BETWEEN 3500000 AND 6000000;
+
+
+-- ¹Ý´ë·Î ±Þ¿©¸¦ 350¸¸¿ø ¹Ì¸¸, ¶Ç´Â 600¸¸¿øÀ» ÃÊ°úÇÏ´Â Á÷¿øÀÇ »ç¹ø, ÀÌ¸§, ±Þ¿©, ºÎ¼­ÄÚµå, Á÷±ÞÄÚµå Á¶È¸(NOT)
+SELECT EMP_ID,EMP_NAME,SALARY,DEPT_CODE,JOB_CODE
+FROM EMPLOYEE
+WHERE SALARY NOT BETWEEN 3500000 AND 6000000;
+
+SELECT EMP_ID,EMP_NAME,SALARY,DEPT_CODE,JOB_CODE
+FROM EMPLOYEE
+WHERE NOT SALARY BETWEEN 3500000 AND 6000000;
+
+
+-- ¹Ì´Ï ½Ç½À ¹®Á¦
+-- EMPLOYEE Å×ÀÌºí¿¡ °í¿ëÀÏÀÌ '90/01/01~'01/01/01'ÀÎ »ç¿øÀÇ ÀüÃ¼ ³»¿ë Á¶È¸
+SELECT *
+FROM EMPLOYEE
+WHERE HIRE_DATE BETWEEN '90/01/01' AND '01/01/01';
+
+-- LIKE 
+-- ºñ±³ÇÏ·Á´Â °ªÀÌ ÁöÁ¤ÇÑ Æ¯Á¤ ÆÐÅÏÀ» ¸¸Á· ½ÃÅ°´ÂÁö Á¶È¸
+-- % : 0±ÛÀÚ ÀÌ»ó 
+-- _ : 1±ÛÀÚ
+-- '±ÛÀÚ%' : ±ÛÀÚ·Î ½ÃÀÛÇÏ´Â °ª
+-- '%±ÛÀÚ%' : ±ÛÀÚ°¡ Æ÷ÇÔµÈ °ª
+-- '%±ÛÀÚ' : ±ÛÀÚ·Î ³¡³ª´Â °ª
+-- '_' : ÇÑ ±ÛÀÚ¸¸ µé¾î¿Ã ¼ö ÀÖÀ½
+-- '__' : µÎ ±ÛÀÚ 
+-- '¹Ú__' : ¹ÚÀ¸·Î ½ÃÀÛÇÏ´Â ¼¼±ÛÀÚ
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ¼ºÀÌ Àü¾¾ÀÎ »ç¿øÀÇ »ç¹ø, ÀÌ¸§, °í¿ëÀÏ Á¶È¸
+SELECT EMP_ID, EMP_NAME, HIRE_DATE
+FROM EMPLOYEE
+WHERE EMP_NAME LIKE 'Àü__';
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ÀÌ¸§¿¡ 'ÇÏ'°¡ Æ÷ÇÔµÈ Á÷¿øÀÇ ÀÌ¸§, ÁÖ¹Î¹øÈ£, ºÎ¼­ÄÚµå Á¶È¸
+SELECT EMP_NAME, EMP_NO, DEPT_CODE
+FROM EMPLOYEE
+WHERE EMP_NAME LIKE '%ÇÏ%';
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ÀüÈ­¹øÈ£ 4¹øÂ° ÀÚ¸®°¡ 9·Î ½ÃÀÛÇÏ´Â »ç¿øÀÇ »ç¹ø, ÀÌ¸§, ÀüÈ­¹øÈ£ Á¶È¸
+SELECT EMP_ID, EMP_NAME, PHONE
+FROM EMPLOYEE
+WHERE PHONE LIKE '___9%';
+
+
+-- ÀÌ¸ÞÀÏ Áß _ ¾Õ±ÛÀÚ°¡ 3ÀÚ¸®ÀÎ ÀÌ¸ÞÀÏ ÁÖ¼Ò¸¦ °¡Áø »ç¿øÀÇ »ç¹ø, ÀÌ¸§, ÀÌ¸ÞÀÏ ÁÖ¼Ò Á¶È¸
+SELECT EMP_ID,EMP_NAME,EMAIL
+FROM EMPLOYEE
+WHERE EMAIL LIKE '____%';
+-- ¿ÍÀÏµåÄ«µåÀÎ _°¡ °Ë»öÇÏ°íÀÚ ÇÏ´Â Á¶°Ç ¾È¿¡ µé¾î°¡´Â ¹®ÀÚ¿Í °°±â ¶§¹®¿¡
+-- ¹®ÀÚ ÀÚÃ¼°¡ ¾Æ´Ñ ¿ÍÀÏµå Ä«µå·Î ÀÎ½Ä
+
+-- ESCAPE OPTION : µ¥ÀÌÅÍ·Î Ã³¸®ÇÒ ÆÐÅÏ ±âÈ£ ¾Õ¿¡ ÀÓÀÇÀÇ ¹®ÀÚ¸¦ »ç¿ëÇÏ°í ESCAPE OPTION µî·Ï
+SELECT EMP_ID,EMP_NAME,EMAIL
+FROM EMPLOYEE
+WHERE EMAIL LIKE '___*_%' ESCAPE '*';       -- ESCAPE µÚ¿¡ ÀÖ´Â °ÍÀº ¹®ÀÚ¶ó°í ¾Ë·ÁÁÜ 
+
+-- NOT LIKE : Æ¯Á¤ ÆÐÅÏÀ» ¸¸Á·½ÃÅ°Áö ¾Ê´Â °ª Á¶È¸
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ±è¾¾ ¼ºÀÌ ¾Æ´Ñ Á÷¿øÀÇ »ç¹ø, ÀÌ¸§, °í¿ëÀÏ Á¶È¸
+SELECT EMP_ID,EMP_NAME,HIRE_DATE
+FROM EMPLOYEE
+--WHERE EMP_NAME NOT LIKE '±è%';
+WHERE NOT EMP_NAME LIKE '±è%';
+
+
+-- ¹Ì´Ï ½Ç½À ¹®Á¦
+-- 1. EMPLOYEE Å×ÀÌºí¿¡¼­ ÀÌ¸§ ³¡ÀÌ '¿¬'À¸·Î ³¡³ª´Â »ç¿øÀÇ ÀÌ¸§ Á¶È¸
+SELECT EMP_NAME
+FROM EMPLOYEE
+WHERE EMP_NAME LIKE '%¿¬';
+-- 2. EMPLOYEE Å×ÀÌºí¿¡¼­ ÀüÈ­¹øÈ£ Ã³À½ 3ÀÚ¸®°¡ 010ÀÌ ¾Æ´Ñ »ç¿øÀÇ ÀÌ¸§, ÀüÈ­¹øÈ£¸¦ Á¶È¸
+SELECT EMP_NAME, PHONE
+FROM EMPLOYEE
+WHERE NOT PHONE LIKE '010%';
+-- 3. EMPLOYEE Å×ÀÌºí¿¡¼­ ¸ÞÀÏÁÖ¼Ò '_'ÀÇ ¾ÕÀÌ 4ÀÚ ÀÌ¸é¼­ DEPT_CODE°¡ D9 ¶Ç´Â D6ÀÌ°í
+--    °í¿ëÀÏÀÌ 90/01/01 ~ 00/12/01ÀÌ°í, ±Þ¿©°¡ 270¸¸ ÀÌ»óÀÎ »ç¿øÀÇ ÀüÃ¼¸¦ Á¶È¸
+SELECT *
+FROM EMPLOYEE
+WHERE EMAIL LIKE '____1_%' ESCAPE '1' AND (DEPT_CODE = 'D9' OR DEPT_CODE = 'D6') AND HIRE_DATE BETWEEN '90/01/01' AND 
+'00/12/01' AND SALARY >= 2700000;
+
+
+-- IS NULL / IS NOT NULL
+-- IS NULL : ÄÃ·³ °ªÀÌ NULLÀÎ °æ¿ì
+-- IS NOT NULL : ÄÃ·³ °ªÀÌ NULLÀÌ ¾Æ´Ñ °æ¿ì
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ º¸³Ê½º¸¦ ¹ÞÁö ¾Ê´Â »ç¿øÀÇ »ç¹ø, ÀÌ¸§, ±Þ¿©, º¸³Ê½º Á¶È¸
+SELECT EMP_ID, EMP_NAME, SALARY, BONUS
+FROM EMPLOYEE
+WHERE BONUS IS NULL;
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ º¸³Ê½º¸¦ ¹Þ´Â »ç¿øÀÇ »ç¹ø, ÀÌ¸§, ±Þ¿©, º¸³Ê½º Á¶È¸
+SELECT EMP_ID, EMP_NAME, SALARY, BONUS
+FROM EMPLOYEE
+WHERE BONUS IS NOT NULL;
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ °ü¸®ÀÚµµ ¾ø°í ºÎ¼­¹èÄ¡µµ ¹ÞÁö ¾ÊÀº Á÷¿øÀÇ ÀÌ¸§, °ü¸®ÀÚ, ºÎ¼­ÄÚµå Á¶È¸
+SELECT EMP_NAME, MANAGER_ID, DEPT_CODE
+FROM EMPLOYEE
+WHERE MANAGER_ID IS NULL AND DEPT_CODE IS NULL;
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ºÎ¼­ ¹èÄ¡¸¦ ¹ÞÁö ¾Ê¾ÒÁö¸¸ º¸³Ê½º¸¦ ¹Þ´Â Á÷¿øÀÇ ÀÌ¸§, º¸³Ê½º, ºÎ¼­ÄÚµå Á¶È¸
+SELECT EMP_NAME,BONUS,DEPT_CODE
+FROM EMPLOYEE
+WHERE DEPT_CODE IS NULL AND BONUS IS NOT NULL;
+
+
+-- IN
+-- ºñ±³ÇÏ·Á´Â °ª ¸ñ·Ï¿¡ ÀÏÄ¡ÇÏ´Â °ªÀÌ ÀÖÀ¸¸é TRUE¸¦ ¹ÝÈ¯ÇÏ´Â ¿¬»êÀÚ
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ ºÎ¼­ÄÚµå°¡ D9ÀÌ°Å³ª D6ÀÎ »ç¿øÀÇ ÀÌ¸§, ºÎ¼­ÄÚµå, ±Þ¿© Á¶È¸
+SELECT EMP_NAME, DEPT_CODE, SALARY
+FROM EMPLOYEE
+--WHERE DEPT_CODE = 'D9' OR DEPT_CODE = 'D6';
+WHERE DEPT_CODE IN('D6','D9');
+
+-- Á÷±Þ ÄÚµå°¡ J1, J2, J3, J4ÀÎ »ç¶÷µéÀÇ ÀÌ¸§, Á÷±Þ ÄÚµå, ±Þ¿©
+-- 1) IN ¹Ì»ç¿ë
+SELECT EMP_NAME, JOB_CODE, SALARY
+FROM EMPLOYEE
+WHERE JOB_CODE = 'J1' OR JOB_CODE = 'J2' OR JOB_CODE = 'J3' OR JOB_CODE = 'J4';
+-- 2) IN »ç¿ë
+SELECT EMP_NAME, JOB_CODE, SALARY
+FROM EMPLOYEE
+WHERE JOB_CODE IN('J1','J2','J3','J4');
+
+
+-- ¿¬°á ¿¬»êÀÚ || : ¿©·¯ ÄÃ·³À» ¿¬°áÇÏ°Å³ª ÄÃ·³°ú ¸®ÅÍ·² ¿¬°á
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ »ç¹ø, ÀÌ¸§, ±Þ¿©¸¦ ¿¬°áÇÏ¿© Á¶È¸
+SELECT EMP_ID || EMP_NAME || SALARY
+FROM EMPLOYEE;
+
+-- EMPLOYEE Å×ÀÌºí¿¡¼­ '»ç¿ø ¸íÀÇ ¿ù±ÞÀº ±Þ¿©¿øÀÔ´Ï´Ù.' Çü½ÄÀ¸·Î Á¶È¸
+SELECT EMP_NAME || 'ÀÇ ¿ù±ÞÀº ' || SALARY || '¿øÀÔ´Ï´Ù.'
+FROM EMPLOYEE;
+
+
