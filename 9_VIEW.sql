@@ -75,12 +75,233 @@ SELECT * FROM JOB;
 
 COMMIT;
 
+-- DML명령어로 조작이 불가능한 경우
+-- 1) 뷰 정의에 포함되지 않은 컬럼을 조작하는 경우
+CREATE OR REPLACE VIEW V_JOB2
+AS SELECT JOB_CODE
+    FROM JOB;
 
+SELECT * FROM V_JOB2;
+SELECT * FROM JOB;
 
+INSERT INTO V_JOB2 VALUES('J8', '인턴');
+-- too many values      뷰에 정의되지 않은 컬럼에 값을 넣는 것이라 에러 뜸
 
+UPDATE V_JOB2
+SET JOB_NAME = '인턴'
+WHERE JOB_CODE = 'J7';
+-- "JOB_NAME": invalid identifier V_JOB2에는 JOB_NAME이 없음
 
+DELETE FROM V_JOB2
+WHERE JOB_NAME = '사원';
+-- "JOB_NAME": invalid identifier V_JOB2에는 JOB_NAME이 없음
 
+-- 2) 뷰에 포함되지 않은 컬럼 중에 베이스가 되는 테이블 컬럼이 NOT NULL 제약조건이 지정된 경우
+-- : INSERT에서만 오류 발생
+-- JOB_NAME만 가진 V_JOB3 뷰 생성
+CREATE OR REPLACE VIEW V_JOB3
+AS SELECT JOB_NAME
+    FROM JOB;
 
+SELECT * FROM V_JOB3;  
 
+INSERT INTO V_JOB3 VALUES('인턴');
+-- cannot insert NULL into ("KH"."JOB"."JOB_CODE") 
+-- JOB_CODE에는 NOT NULL 제약조건이 들어가 있고 인턴이 들어가면 JOB_CODE는 NULL이 될텐데 제약조건 때문에 NULL이 들어 갈 수 없다는 에러 뜸
 
+INSERT INTO JOB VALUES('J8','인턴');
 
+SELECT * FROM V_JOB3;
+
+UPDATE V_JOB3
+SET JOB_NAME = '알바'
+WHERE JOB_NAME = '인턴';
+
+SELECT * FROM V_JOB3;
+SELECT * FROM JOB;
+
+DELETE FROM V_JOB3
+WHERE JOB_NAME = '알바';
+
+SELECT * FROM V_JOB3;
+SELECT * FROM JOB;
+
+-- 3) 산술 표현식으로 정의된 경우
+-- 사번, 사원 명, 급여, 보너스가 포함된 연봉으로 이루어진 EMP_SAL 뷰 생성
+CREATE OR REPLACE VIEW EMP_SAL
+AS SELECT EMP_ID, EMP_NAME, SALARY, SALARY + (SALARY*NVL(BONUS, 0))*12 연봉
+    FROM EMPLOYEE;
+    
+SELECT * FROM EMP_SAL;
+
+INSERT INTO EMP_SAL VALUES(800, '정진훈', 3000000, 36000000);
+-- "virtual column not allowed here" 산술표현식으로 정의 되었는데 36000000으로 정의하고 있어서 에러
+
+UPDATE EMP_SAL
+SET 연봉 = 8000000
+WHERE EMP_ID = 200;
+-- "virtual column not allowed here" 계산을 해야하는 값을 하나로 지정했기 때문에 안됨
+
+COMMIT;
+
+DELETE FROM EMP_SAL
+WHERE 연봉 = 124800000;
+
+SELECT * FROM EMP_SAL;
+SELECT * FROM EMPLOYEE;
+
+ROLLBACK;
+
+-- 4) 그룹함수나 GROUP BY절을 포함한 경우
+-- 부서 코드, 부서 코드 별 급여 합계, 부서 코드 별 급여 평균을 가지고 있는 V_GROUPDEPT 뷰 생성
+--                   (합계)                   (평균)
+CREATE OR REPLACE VIEW V_GROUPDEPT
+AS SELECT DEPT_CODE, SUM(SALARY) 합계, AVG(SALARY) 평균
+FROM EMPLOYEE
+GROUP BY DEPT_CODE;
+
+SELECT * FROM V_GROUPDEPT;
+
+INSERT INTO V_GROUPDEPT
+VALUES ('D10', 6000000, 4000000);
+-- virtual column not allowed here
+
+UPDATE V_GROUPDEPT
+SET DEPT_CODE = 'D10'
+WHERE DEPT_CODE = 'D1';
+-- data manipulation operation not legal on this view
+
+DELETE FROM V_GROUPDEPT
+WHERE DEPT_CODE = 'D1';
+-- data manipulation operation not legal on this view
+
+-- 5) DISTINCT를 포함한 경우
+CREATE OR REPLACE VIEW V_DT_EMP
+AS SELECT DISTINCT JOB_CODE
+    FROM EMPLOYEE;
+    
+SELECT * FROM V_DT_EMP;
+
+INSERT INTO V_DT_EMP VALUES ('J9');
+-- data manipulation operation not legal on this view
+
+UPDATE V_DT_EMP
+SET JOB_CODE = 'J9'
+WHERE JOB_CODE = 'J7';
+-- data manipulation operation not legal on this view
+
+DELETE FROM V_DT_EMP
+WHERE JOB_CODE = 'J1';
+-- data manipulation operation not legal on this view
+
+-- 6) JOIN을 이용해 여러 테이블을 연결한 경우
+-- 사번, 사원 명, 부서 명 정보를 가지고 있는 V_JOINEMP 뷰 생성
+CREATE OR REPLACE VIEW V_JOINEMP
+AS SELECT EMP_ID, EMP_NAME, DEPT_TITLE
+FROM EMPLOYEE
+    JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID);
+
+SELECT * FROM V_JOINEMP;
+
+INSERT INTO V_JOINEMP VALUES (888, '조세오', '인사관리부');
+-- cannot modify more than one base table through a join view
+
+UPDATE V_JOINEMP
+SET DEPT_TITLE = '인사관리부'
+WHERE EMP_ID = 219;
+-- cannot modify a column which maps to a non key-preserved table
+
+COMMIT;
+
+DELETE FROM V_JOINEMP
+WHERE EMP_ID = 219;
+
+SELECT * FROM V_JOINEMP;
+SELECT * FROM EMPLOYEE;
+SELECT * FROM DEPARTMENT;
+
+ROLLBACK;
+
+SELECT * FROM USER_VIEWS;
+-- 텍스트에 저장되어 있는 것을 불러오고 있는 것
+
+-- VIEW 옵션
+-- VIEW 생성 표현식
+-- CREATE [OR REPLACE] [FORCE | NOFORCE] VIEW 뷰이름 [(ALIAS[, ALIAS])]
+-- AS SUBQUERY
+-- [WITH CHECK OPTION]
+-- [WITH READ ONLY];
+
+-- 1) OR REPLACE 옵션 : 기존에 동일한 뷰 이름이 존재하는 경우 덮어쓰고, 존재하지 않으면 새로 생성
+-- 2) FORCE /  NOFORCE 옵션
+--       FORCE : 서브쿼리에 사용된 테이블이 존재하지 않아도 뷰 생성
+--       NOFORCE : 서브쿼리에 사용된 테이블이 존재해야만 뷰 생성(기본 값)
+-- 3) WITH CHECK OPTION : 옵션을 설정한 컬럼의 값을 수정 불가능하게 함
+-- 4) WITH READ ONLY 옵션 : 뷰에 대해 조회만 가능
+
+-- 1) OR REPLACE 옵션 : 기존에 동일한 뷰 이름이 존재하는 경우 덮어쓰고, 존재하지 않으면 새로 생성
+-- 주민번호와 사원 명 정보를 가지고 있는 V_EMP1 뷰 생성
+CREATE OR REPLACE VIEW V_EMP1
+AS SELECT EMP_NO, EMP_NAME
+FROM EMPLOYEE;
+
+SELECT * FROM V_EMP1;
+
+CREATE OR REPLACE VIEW V_EMP1
+AS SELECT EMP_NO, EMP_NAME, SALARY
+FROM EMPLOYEE;
+
+CREATE VIEW V_EMP1
+AS SELECT EMP_NO,EMP_NAME
+FROM EMPLOYEE;
+-- "name is already used by an existing object"
+
+-- 2) FORCE /  NOFORCE 옵션
+-- FORCE
+CREATE OR REPLACE /*NOFORCE*/ VIEW V_EMP2
+AS SELECT TCODE, TNAME, TCONTENT
+    FROM TT;
+-- table or view does not exist
+
+CREATE OR REPLACE FORCE VIEW V_EMP2
+AS SELECT TCODE, TNAME, TCONTENT
+    FROM TT;
+-- 경고: 컴파일 오류와 함께 뷰가 생성되었습니다.
+
+SELECT * FROM V_EMP2;   -- 생성만 되고 아무것도 할 수 없음
+SELECT * FROM USER_VIEWS;
+
+-- 3) WITH CHECK OPTION : 옵션을 설정한 컬럼의 값을 수정 불가능하게 함
+CREATE OR REPLACE VIEW V_EMP3
+AS SELECT * 
+    FROM EMPLOYEE
+    WHERE DEPT_CODE = 'D9' WITH CHECK OPTION;
+
+SELECT * FROM V_EMP3;
+
+UPDATE V_EMP3
+SET DEPT_CODE = 'D1'
+WHERE EMP_ID = 200;
+-- view WITH CHECK OPTION where-clause violation
+
+COMMIT;
+
+UPDATE V_EMP3
+SET EMP_NAME = '선동이'
+WHERE EMP_ID = 200;
+
+SELECT * FROM V_EMP3;
+
+ROLLBACK;
+
+-- 4) WITH READ ONLY 옵션 : 뷰에 대해 조회만 가능
+CREATE OR REPLACE VIEW V_DEPT
+AS SELECT * FROM DEPARTMENT
+WITH READ ONLY;
+
+SELECT * FROM V_DEPT;
+
+DELETE FROM V_DEPT;
+-- cannot perform a DML operation on a read-only view
+
+COMMIT;
